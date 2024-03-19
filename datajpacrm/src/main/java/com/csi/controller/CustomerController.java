@@ -61,4 +61,9 @@ public class CustomerController {
     public ResponseEntity<List<Customer>> sortbyAccBalance(){
         return ResponseEntity.ok(customerServiceImpl.findAll().stream().sorted(Comparator.comparing(Customer::getCustBalance)).toList());
     }
+
+    @GetMapping("/services")
+    public ResponseEntity<String> services(){
+        return ResponseEntity.ok("Software Development Software");
+    }
 }
