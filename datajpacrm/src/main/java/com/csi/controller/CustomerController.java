@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,5 +55,10 @@ public class CustomerController {
     public ResponseEntity<String> deletebyId(@PathVariable int custId){
         customerServiceImpl.deleteById(custId);
         return ResponseEntity.ok("Customer Data deleted sucessfully");
+    }
+
+    @GetMapping("/sortbyaccbalance")
+    public ResponseEntity<List<Customer>> sortbyAccBalance(){
+        return ResponseEntity.ok(customerServiceImpl.findAll().stream().sorted(Comparator.comparing(Customer::getCustBalance)).toList());
     }
 }
